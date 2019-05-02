@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
 
 export default class HomePage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-  render() {
+  render () {
     return (
       <View>
         <Text>Home Page</Text>
+        <Button title="Login" onPress={()=> this.props.navigation.navigate('Login')}/>
       </View>
     )
   }
