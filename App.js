@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import LoginPage from './components/login/login'
 import HomePage from './components/pages/home'
 import { Provider } from 'react-redux'
@@ -11,10 +11,10 @@ import { createStackNavigator, createAppContainer } from "react-navigation"
 const store = createStore(reducers)
 
 export default class App extends Component {
-  render () {
+  render() {
     return (
       <Provider store={store}>
-        <AppNavigatorContainer />
+          <AppNavigatorContainer/>
       </Provider>
     )
   }

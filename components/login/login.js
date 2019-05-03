@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { View, TextInput, Text } from 'react-native'
-import { connect } from 'react-redux'
+import { View, Text, ScrollView } from 'react-native'
 import LoginForm from './loginForm'
 
-class LoginPage extends Component {
+export default class LoginPage extends Component {
   static navigationOptions = {
     title: 'Login',
     headerStyle: {
@@ -15,30 +14,19 @@ class LoginPage extends Component {
     },
   }
 
-  render () {
+  render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.logoContainerOuter}>
           <View style={styles.logoContainer}>
             <Text style={styles.logo}>FOLD</Text>
           </View>
         </View>
-        <LoginForm />
-      </View>
+        <LoginForm/>
+      </ScrollView>
     )
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    images: state.images,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateImage: () => dispatch(updateImageAction()),
-  };
-};
 
 const styles = {
   container: {
@@ -66,5 +54,3 @@ const styles = {
     fontSize: 30,
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(ImageList);

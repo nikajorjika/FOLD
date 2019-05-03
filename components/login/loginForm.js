@@ -1,29 +1,34 @@
 import React from 'react'
 import { View, TextInput, Text, TouchableOpacity } from 'react-native'
-import { login } from '../../actions'
+import { connect } from 'react-redux'
+import { login } from '../../actions/index'
 
-export default class LoginForm extends React.Component {
-  constructor (props) {
+class LoginForm extends React.Component {
+  constructor(props) {
     super(props)
     this.state = {
-      email: '',
+      username: '',
       password: '',
       loading: false
     }
   }
-  loginUser () {
-    this.setState({loading: true})
-    // Log In User here
-    store.dispatch(login({ username: 'nikajorjika', password: '123123' }))
 
+  loginUser() {
+    this.setState({ loading: true })
+    // Log In User here
+    console.log(this.props.login(this.state.username, this.state.password))
   }
-  render () {
+
+  render() {
     return (
       <View style={styles.container}>
-        <TextInput placeholder='Username / E-mail' style={{ ...styles.inputField, ...styles.usernameInput}}/>
-        <TextInput placeholder='Password' secureTextEntry={true} style={{ ...styles.inputField, ...styles.passwordInput}}/>
-        <View style={styles.buttonContainer} >
-          <TouchableOpacity onPress = {() => this.loginUser()}>
+        <TextInput onChangeText={(text) => this.setState({username: text})} placeholder='Username / E-mail'
+                   style={{ ...styles.inputField, ...styles.usernameInput }}/>
+        <TextInput placeholder='Password' secureTextEntry={true}
+                   onChangeText={(text) => this.setState({password: text})}
+                   style={{ ...styles.inputField, ...styles.passwordInput }}/>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={() => this.loginUser()}>
             <View style={styles.buttonContainer}>
               <Text style={styles.buttonText}>Login</Text>
             </View>
@@ -33,21 +38,18 @@ export default class LoginForm extends React.Component {
     )
   }
 }
+
 const styles = {
   container: {
-    flex: 1
   },
   inputField: {
     backgroundColor: '#102E4A',
     margin: 20,
-    padding: 10
+    padding: 10,
+    color: '#f6f6f6'
   },
-  usernameInput: {
-
-  },
-  passwordInput: {
-
-  },
+  usernameInput: {},
+  passwordInput: {},
   buttonContainer: {
     backgroundColor: 'purple',
     margin: 20
@@ -58,3 +60,12 @@ const styles = {
     color: '#fff'
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  login: (username, password) => dispatch(login({ username: username, password: password })),
+})
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
