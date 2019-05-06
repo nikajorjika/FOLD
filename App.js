@@ -5,8 +5,7 @@ import HomePage from './components/pages/home'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducers from './reducers/index'
-import { login } from './actions'
-import { createStackNavigator, createAppContainer } from "react-navigation"
+import { createStackNavigator, createAppContainer } from 'react-navigation'
 
 const store = createStore(reducers)
 
@@ -14,19 +13,19 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-          <AppNavigatorContainer/>
+        <AppNavigatorContainer />
       </Provider>
     )
   }
 }
 
 const AppNavigator = createStackNavigator({
-  Login: {
-    screen: LoginPage
-  },
   Home: {
-    screen: HomePage
-  }
+    screen: HomePage,
+  },
+  Login: {
+    screen: LoginPage,
+  },
 })
 const styles = StyleSheet.create({
   container: {
