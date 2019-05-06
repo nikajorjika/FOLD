@@ -1,22 +1,33 @@
 import React, { Component } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
+import EventList from './page-components/event-list'
 
 export default class HomePage extends Component {
-  render () {
+  static navigationOptions = {
+    title: 'Event List',
+    headerStyle: {
+      backgroundColor: '#5887FF',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  }
+  render() {
+    
     return (
-      <View>
-        <Text>Home Page</Text>
-        <Button title="Login" onPress={()=> this.props.navigation.navigate('Login')}/>
-      </View>
+      <ScrollView style={styles.container}>
+        <EventList navigation={this.props.navigation} title={'Upcoming Events'} />
+        <EventList navigation={this.props.navigation} title={'Upcoming Events'} />
+        <EventList navigation={this.props.navigation} title={'Upcoming Events'} />
+      </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 0,
+    backgroundColor: '#5887FF',
   },
 })
